@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/11 15:22:20 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/11 18:07:06 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ void	ft_init_var(t_wolf *env)
 	env->dep.time = 0;
 }
 
+void	ft_init_image(t_wolf *env)
+{
+	if (!(env->img.image = mlx_xpm_file_to_image(env->fen.mlx_ptr, "img/mur.xpm", &(env->img.width), &(env->img.height))))
+		ft_error("Probleme de chargement d'image !", 0);
+	if (!(env->img.img_str = mlx_get_data_addr(env->img.image, &(env->img.bits_per_pixel), &(env->img.size_line), &(env->img.endian))))
+		ft_error("Probleme image", 0);
+	printf("Taille image : width = [%d] / height = [%d]\n", env->img.width, env->img.height);
+	printf("Bits per pixel : [%d]\n", env->img.bits_per_pixel);
+	printf("Size line : [%d]\n", env->img.size_line);
+	printf("Endian : [%d]\n", env->img.endian);
+}
+
 void	ft_init_wolf(t_wolf *env)
 {
 	ft_init_mlx(env);
@@ -53,6 +65,7 @@ void	ft_init_wolf(t_wolf *env)
 		printf("Tu m'as foutu sur un mur !! debile \n");
 		exit(0);
 	}
+	ft_init_image(env);
 }
 
 t_wolf	*ft_wolf(void)

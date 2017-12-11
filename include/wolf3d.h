@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/11 13:29:02 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/11 17:53:05 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,17 @@ typedef struct			s_dep
 	clock_t				time;
 }						t_dep;
 
+typedef struct			s_image
+{
+	void				*image;
+	int					width;
+	int					height;
+	int					bits_per_pixel;
+	int					size_line;
+	int					endian;
+	char				*img_str;
+}						t_image;
+
 typedef struct			s_wolf
 {
 	t_mlx				fen;
@@ -84,6 +95,7 @@ typedef struct			s_wolf
 	double				walldist;	// Distance corrigee du rayon
 	t_coord				draw;
 	t_dep				dep;
+	t_image				img;
 }						t_wolf;
 
 /*
