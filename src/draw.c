@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 12:23:07 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 13:58:11 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,29 @@
 void	ft_init_texture(t_wolf *env)
 {
 	print_wolf(env);
-//	if (env->side == 1)
-//		env->text.wallx = env->raypos.x + (((double)env->map.y - env->raypos.y + (1.0 - env->step.y) / 2.0) / env->dir.y) * env->dir.x;
-//	else
-//		env->text.wallx = env->raypos.y + (((double)env->map.x - env->raypos.x + (1.0 - env->step.x) / 2.0) / env->dir.x) * env->dir.y;
-//	printf("Valeur wallX = [%lf] et texX = [%lf] et floor(wallx) = [%lf]\n", env->text.wallx, env->text.tex.x, floor(env->text.wallx));
-//	env->text.wallx -= floor(env->text.wallx);
+/*	if (env->side == 1)
+		env->text.wallx = env->raypos.x + (((double)env->map.y - env->raypos.y + (1.0 - env->step.y) / 2.0) / (env->dir.y + 0.0001)) * env->dir.x;
+	else
+		env->text.wallx = env->raypos.y + (((double)env->map.x - env->raypos.x + (1.0 - env->step.x) / 2.0) / (env->dir.x + 0.0001)) * env->dir.y;
+	printf("Valeur wallX = [%lf] et texX = [%lf] et floor(wallx) = [%lf]\n", env->text.wallx, env->text.tex.x, floor(env->text.wallx));
+	env->text.wallx -= floor(env->text.wallx);
 
-//	env->text.tex.x = (int)(env->text.wallx * env->img.width);
-//	printf("Valeur wallX = [%lf] et texX = [%lf]\n", env->text.wallx, env->text.tex.x);
-//	if ((env->side == 0 && env->dir.x > 0) || (env->side == 1 && env->dir.y < 0))
-//		env->text.tex.x = env->img.width - env->text.tex.x - 1;
-//	printf("Valeur wallX = [%lf] et texX = [%lf]\n", env->text.wallx, env->text.tex.x);
-	env->text.x++;
-	if (env->text.x >= 256)
-		env->text.x = 0;
-	printf("Valeur env->text.x = [%d]\n", env->text.x);
+	env->text.tex.x = (int)(env->text.wallx * env->img.width);
+	printf("Valeur wallX = [%lf] et texX = [%lf]\n", env->text.wallx, env->text.tex.x);
+	if ((env->side == 0 && env->dir.x > 0) || (env->side == 1 && env->dir.y < 0))
+		env->text.tex.x = env->img.width - env->text.tex.x - 1;
+	printf("Valeur wallX = [%lf] et texX = [%lf]\n", env->text.wallx, env->text.tex.x);
+*/	printf("Valeur env->text.x = [%d]\n", env->text.x);
+	if (env->side == 0)
+		env->text.wallx = env->pos.y + env->walldist * env->dir.y;
+	else
+		env->text.wallx = env->pos.x + env->walldist * env->dir.x;
+	env->text.wallx -= floor(env->text.wallx);
+
+	env->text.tex.x = (int)(env->text.wallx * (double)env->img.width);
+	if ((env->side == 0 && env->dir.x > 0) || (env->side == 1 && env->dir.y < 0))
+		env->text.tex.x = env->img.width - env->text.tex.x - 1;
+
 }
 
 void	color_texture(t_wolf *env, int x, int y)
@@ -78,7 +85,7 @@ void	draw_wall(t_wolf *env, int x)
 //		printf("Y = [%d] --- hautligne = [%lf] - wallDist = [%lf]\n", y, env->hautligne, env->walldist);
 		if (env->hautligne > H)
 			env->hautligne = H;
-		env->text.tex.y = (y * 2 - (H - 1) + env->hautligne) * (env->img.height / 2) / env->hautligne;
+		env->text.tex.y = (y * 2.0 - (H - 1.0) + env->hautligne) * (env->img.height / 2.0) / env->hautligne;
 		color_texture(env, x, y);	
 //		color(env, x, y, (env->side == 1) ? (int)(0xCCCCCC) : (int)(0xf2f2f2));
 	}
@@ -96,16 +103,16 @@ void	draw_sky(t_wolf *env, int x)
 void	draw(t_wolf *env, int x)
 {
 	if (env->walldist == 0)
-		env->hautligne = H;
+		env->hautligne = H; /// inutile
 	else
-		env->hautligne = abs((int)(H / env->walldist)); //TODO: abs a changer
-	env->draw.x = (int)((H / 2) - (env->hautligne / 2)); //start
-	env->draw.y = (int)((H / 2) + (env->hautligne / 2)); //end
+		env->hautligne = abs((int)((double)H / env->walldist)); //TODO: abs a changer
+	env->draw.x = (int)((H / 2.0) - (env->hautligne / 2.0)); //start
+	env->draw.y = (int)((H / 2.0) + (env->hautligne / 2.0)); //end
 	(env->draw.x < 0) ? env->draw.x = 0 : 0;
 	(env->draw.y >= H) ? env->draw.y = (H - 1) : 0;
 	draw_wall(env, x);
-	if (env->draw.y < 0)
-		env->draw.y = H;
+	if (env->draw.y < 0)//
+		env->draw.y = H;//
 	draw_ground(env, x);
 	draw_sky(env, x);
 }

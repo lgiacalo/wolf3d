@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:54:30 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/11 15:25:54 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 13:18:44 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ void	def_wall(t_wolf *env)
 {
 	//TODO: abs a changer
 	if (env->side == 0)
-		env->walldist = ((env->map.x - env->raypos.x
-				+ ((1 - env->step.x)/ 2)) / env->raydir.x);
+		env->walldist = (((double)env->map.x - env->raypos.x + 0.001
+				+ ((1.0 - env->step.x)/ 2.0)) / env->raydir.x);
 	else
-		env->walldist = ((env->map.y - env->raypos.y
-				+ ((1 - env->step.y)/ 2)) / env->raydir.y);
+		env->walldist = (((double)env->map.y - env->raypos.y + 0.001
+				+ ((1.0 - env->step.y)/ 2.0)) / env->raydir.y);
 }
 
 void	boucle(t_wolf *env)
