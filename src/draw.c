@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 23:20:16 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 23:48:08 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ void	draw_wall(t_wolf *env, int x)
 	while (++y < env->draw.y && y < H)
 	{
 //		printf("Y = [%d] --- hautligne = [%lf] - wallDist = [%lf]\n", y, env->hautligne, env->walldist);
-		if (env->hautligne > H)
-			env->hautligne = H;
 		env->text[env->side].tex.y = (y * 2.0 - (H - 1.0) + env->hautligne) * (env->img[env->side].height / 2.0) / env->hautligne;
 		color_texture(env, x, y);	
 //		color(env, x, y, (env->side == 1) ? (int)(0xCCCCCC) : (int)(0xf2f2f2));
