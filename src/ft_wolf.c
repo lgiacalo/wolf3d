@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 22:44:19 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 23:12:08 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,19 @@ void	ft_init_var(t_wolf *env)
 	env->dep.vitmarche = 0.10;
 	env->dep.vitrot = 0.05;
 	env->dep.time = 0;
-	env->text.x = 0;
 }
 
-void	ft_init_image(t_wolf *env)
+void	ft_init_image(t_wolf *env, int ind, char *fic)
 {
-	if (!(env->img.image = mlx_xpm_file_to_image(env->fen.mlx_ptr, "img/mur.xpm", &(env->img.width), &(env->img.height))))
+	if (!(env->img[ind].image = mlx_xpm_file_to_image(env->fen.mlx_ptr, fic, &(env->img[ind].width), &(env->img[ind].height))))
 		ft_error("Probleme de chargement d'image !", 0);
-	if (!(env->img.img_str = mlx_get_data_addr(env->img.image, &(env->img.bits_per_pixel), &(env->img.size_line), &(env->img.endian))))
+	if (!(env->img[ind].img_str = mlx_get_data_addr(env->img[ind].image, &(env->img[ind].bits_per_pixel), &(env->img[ind].size_line), &(env->img[ind].endian))))
 		ft_error("Probleme image", 0);
-	printf("============= TEXTURE =============\n");
-	printf("Taille image : width = [%d] / height = [%d]\n", env->img.width, env->img.height);
-	printf("Bits per pixel : [%d]\n", env->img.bits_per_pixel);
-	printf("Size line : [%d]\n", env->img.size_line);
-	printf("Endian : [%d]\n\n", env->img.endian);
+	printf("============= TEXTURE N*%d =============\n", ind);
+	printf("Taille image : width = [%d] / height = [%d]\n", env->img[ind].width, env->img[ind].height);
+	printf("Bits per pixel : [%d]\n", env->img[ind].bits_per_pixel);
+	printf("Size line : [%d]\n", env->img[ind].size_line);
+	printf("Endian : [%d]\n\n", env->img[ind].endian);
 }
 
 void	ft_init_wolf(t_wolf *env)
@@ -72,7 +71,8 @@ void	ft_init_wolf(t_wolf *env)
 		printf("Tu m'as foutu sur un mur !! debile \n");
 		exit(0);
 	}
-	ft_init_image(env);
+	ft_init_image(env, 0, "img/mur.xpm");
+	ft_init_image(env, 1, "img/wood.xpm");
 }
 
 t_wolf	*ft_wolf(void)

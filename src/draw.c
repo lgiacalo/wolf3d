@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 23:00:49 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 23:20:16 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 void	ft_init_texture(t_wolf *env)
 {
-	print_wolf(env);
-//	printf("Valeur env->text.x = [%d]\n", env->text.x);
+//	print_wolf(env);
+//	printf("Valeur env->text.x = [%d]\n", env->text[env->side].tex.x);
 	if (env->side == 0)
-		env->text.wallx = env->raypos.y + env->walldist * env->raydir.y;
+		env->text[env->side].wallx = env->raypos.y + env->walldist * env->raydir.y;
 	else
-		env->text.wallx = env->raypos.x + env->walldist * env->raydir.x;
-	env->text.wallx -= floor(env->text.wallx);
+		env->text[env->side].wallx = env->raypos.x + env->walldist * env->raydir.x;
+	env->text[env->side].wallx -= floor(env->text[env->side].wallx);
 
-	printf("Valeur wallX = [%lf]\t // \t", env->text.wallx);
-	env->text.tex.x = (int)(env->text.wallx * (double)env->img.width);
-	printf(" tex.X = [%lf]\n", env->text.tex.x);
+//	printf("Valeur wallX = [%lf]\t // \t", env->text[env->side].wallx);
+	env->text[env->side].tex.x = (int)(env->text[env->side].wallx * (double)env->img[env->side].width);
+//	printf(" tex.X = [%lf]\n", env->text[env->side].tex.x);
 	if ((env->side == 0 && env->dir.x > 0) || (env->side == 1 && env->dir.y < 0))
 	{
-		env->text.tex.x = env->img.width - env->text.tex.x - 1;
-		printf("Je suis passer dans le if\n");
+		env->text[env->side].tex.x = env->img[env->side].width - env->text[env->side].tex.x - 1;
+//		printf("Je suis passer dans le if\n");
 	}
-	printf("Valeur tex.X : [%lf]\n", env->text.tex.x);
+//	printf("Valeur tex.X : [%lf]\n", env->text[env->side].tex.x);
 }
 
 void	color_texture(t_wolf *env, int x, int y)
@@ -39,12 +39,12 @@ void	color_texture(t_wolf *env, int x, int y)
 	int	ind_tex;
 
 	ind_tab = x * 4 + y * env->fen.size_line;
-//	printf("Valeur texX = [%lf] / texY = [%lf]\n", env->text.tex.x, env->text.tex.y);
-	ind_tex = (int)env->text.tex.x * 4 + (int)env->text.tex.y * env->img.size_line;
+//	printf("Valeur texX = [%lf] / texY = [%lf]\n", env->text[env->side].tex.x, env->text[env->side].tex.y);
+	ind_tex = (int)env->text[env->side].tex.x * 4 + (int)env->text[env->side].tex.y * env->img[env->side].size_line;
 //	printf("Valeur ind_tex : [%d]\n", ind_tex);
-	env->fen.img_str[ind_tab] = env->img.img_str[ind_tex];
-	env->fen.img_str[ind_tab + 1] = env->img.img_str[ind_tex + 1];
-	env->fen.img_str[ind_tab + 2] = env->img.img_str[ind_tex + 2];
+	env->fen.img_str[ind_tab] = env->img[env->side].img_str[ind_tex];
+	env->fen.img_str[ind_tab + 1] = env->img[env->side].img_str[ind_tex + 1];
+	env->fen.img_str[ind_tab + 2] = env->img[env->side].img_str[ind_tex + 2];
 }
 
 void	color(t_wolf *env, int x, int y, int color)
@@ -63,13 +63,13 @@ void	draw_wall(t_wolf *env, int x)
 
 	y = env->draw.x - 1;
 	ft_init_texture(env);
-	printf("\n\n===== COLONNE X = [%d] =============\n", x);
+//	printf("\n\n===== COLONNE X = [%d] =============\n", x);
 	while (++y < env->draw.y && y < H)
 	{
 //		printf("Y = [%d] --- hautligne = [%lf] - wallDist = [%lf]\n", y, env->hautligne, env->walldist);
 		if (env->hautligne > H)
 			env->hautligne = H;
-		env->text.tex.y = (y * 2.0 - (H - 1.0) + env->hautligne) * (env->img.height / 2.0) / env->hautligne;
+		env->text[env->side].tex.y = (y * 2.0 - (H - 1.0) + env->hautligne) * (env->img[env->side].height / 2.0) / env->hautligne;
 		color_texture(env, x, y);	
 //		color(env, x, y, (env->side == 1) ? (int)(0xCCCCCC) : (int)(0xf2f2f2));
 	}

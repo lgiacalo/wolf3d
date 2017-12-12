@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 21:13:45 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 23:11:44 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ typedef struct			s_text
 {
 	double				wallx;
 	t_dcoord			tex;
-	int					x;
 }						t_text;
 
 typedef struct			s_wolf
@@ -103,8 +102,8 @@ typedef struct			s_wolf
 	double				hautligne;
 	t_coord				draw;
 	t_dep				dep;
-	t_image				img;
-	t_text				text;
+	t_image				img[2];
+	t_text				text[2];
 }						t_wolf;
 
 /*
