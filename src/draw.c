@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 14:03:57 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 23:00:49 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,20 @@ void	ft_init_texture(t_wolf *env)
 	print_wolf(env);
 //	printf("Valeur env->text.x = [%d]\n", env->text.x);
 	if (env->side == 0)
-		env->text.wallx = env->pos.y + env->walldist * env->dir.y;
+		env->text.wallx = env->raypos.y + env->walldist * env->raydir.y;
 	else
-		env->text.wallx = env->pos.x + env->walldist * env->dir.x;
+		env->text.wallx = env->raypos.x + env->walldist * env->raydir.x;
 	env->text.wallx -= floor(env->text.wallx);
 
+	printf("Valeur wallX = [%lf]\t // \t", env->text.wallx);
 	env->text.tex.x = (int)(env->text.wallx * (double)env->img.width);
+	printf(" tex.X = [%lf]\n", env->text.tex.x);
 	if ((env->side == 0 && env->dir.x > 0) || (env->side == 1 && env->dir.y < 0))
+	{
 		env->text.tex.x = env->img.width - env->text.tex.x - 1;
-
+		printf("Je suis passer dans le if\n");
+	}
+	printf("Valeur tex.X : [%lf]\n", env->text.tex.x);
 }
 
 void	color_texture(t_wolf *env, int x, int y)
@@ -35,10 +40,7 @@ void	color_texture(t_wolf *env, int x, int y)
 
 	ind_tab = x * 4 + y * env->fen.size_line;
 //	printf("Valeur texX = [%lf] / texY = [%lf]\n", env->text.tex.x, env->text.tex.y);
-	if (env->side == 1)
-		ind_tex = (int)env->text.tex.y * 4 + (int)env->text.tex.x * env->img.size_line;
-	else
-		ind_tex = (int)env->text.tex.x * 4 + (int)env->text.tex.y * env->img.size_line;
+	ind_tex = (int)env->text.tex.x * 4 + (int)env->text.tex.y * env->img.size_line;
 //	printf("Valeur ind_tex : [%d]\n", ind_tex);
 	env->fen.img_str[ind_tab] = env->img.img_str[ind_tex];
 	env->fen.img_str[ind_tab + 1] = env->img.img_str[ind_tex + 1];
@@ -53,15 +55,6 @@ void	color(t_wolf *env, int x, int y, int color)
 	env->fen.img_str[ind] = color;
 	env->fen.img_str[ind + 1] = color;
 	env->fen.img_str[ind + 2] = color;
-}
-
-void	draw_ground(t_wolf *env, int x)
-{
-	int	y;
-
-	y = -1;
-	while (++y < env->draw.x && y < H)
-		color(env, x, y, (int)(0x554477));	
 }
 
 void	draw_wall(t_wolf *env, int x)
@@ -90,6 +83,17 @@ void	draw_sky(t_wolf *env, int x)
 	while (++y < H && y >= 0)
 		color(env, x, y, (int)(0x000044));	
 }
+
+void	draw_ground(t_wolf *env, int x)
+{
+	int	y;
+
+	y = -1;
+	while (++y < env->draw.x && y < H)
+		color(env, x, y, (int)(0x554477));	
+}
+
+
 
 void	draw(t_wolf *env, int x)
 {

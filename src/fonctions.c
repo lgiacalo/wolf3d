@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:28:12 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 11:59:56 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 21:15:35 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	print_wolf(t_wolf *env)// TODO: a supprimer
 	printf("SideDist\t[%lf][%lf]\n", env->sidedist.x, env->sidedist.y);
 	printf("Step\t\t[%d][%d]\n", env->step.x, env->step.y);
 	printf("Side\t\t[%d]\n", env->side);
+	printf("WallDist\t\t[%lf]\n", env->walldist);
 	printf("===================================================================\n");
 }
