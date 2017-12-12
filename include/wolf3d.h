@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 10:41:05 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 12:16:54 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ typedef struct			s_text
 {
 	double				wallx;
 	t_dcoord			tex;
+	int					x;
 }						t_text;
 
 typedef struct			s_wolf

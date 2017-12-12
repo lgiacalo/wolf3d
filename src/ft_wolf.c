@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 10:10:15 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 12:17:24 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_init_var(t_wolf *env)
 	env->dep.vitmarche = 0.10;
 	env->dep.vitrot = 0.05;
 	env->dep.time = 0;
+	env->text.x = 0;
 }
 
 void	ft_init_image(t_wolf *env)
