@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 23:11:44 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 00:05:32 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,8 +102,8 @@ typedef struct			s_wolf
 	double				hautligne;
 	t_coord				draw;
 	t_dep				dep;
-	t_image				img[2];
-	t_text				text[2];
+	t_image				img[4];
+	t_text				text[4];
 }						t_wolf;
 
 /*

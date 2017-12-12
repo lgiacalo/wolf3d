@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 23:12:08 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 00:30:21 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_init_image(t_wolf *env, int ind, char *fic)
 		ft_error("Probleme de chargement d'image !", 0);
 	if (!(env->img[ind].img_str = mlx_get_data_addr(env->img[ind].image, &(env->img[ind].bits_per_pixel), &(env->img[ind].size_line), &(env->img[ind].endian))))
 		ft_error("Probleme image", 0);
-	printf("============= TEXTURE N*%d =============\n", ind);
+	printf("============= TEXTURE %s N*%d =============\n", fic, ind);
 	printf("Taille image : width = [%d] / height = [%d]\n", env->img[ind].width, env->img[ind].height);
 	printf("Bits per pixel : [%d]\n", env->img[ind].bits_per_pixel);
 	printf("Size line : [%d]\n", env->img[ind].size_line);
@@ -73,6 +73,8 @@ void	ft_init_wolf(t_wolf *env)
 	}
 	ft_init_image(env, 0, "img/mur.xpm");
 	ft_init_image(env, 1, "img/wood.xpm");
+	ft_init_image(env, 2, "img/grass.xpm");
+	ft_init_image(env, 3, "img/plafond.xpm");
 }
 
 t_wolf	*ft_wolf(void)

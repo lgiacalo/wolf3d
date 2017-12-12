@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 23:48:08 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 00:28:31 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,20 @@ void	color_texture(t_wolf *env, int x, int y)
 {
 	int	ind_tab;
 	int	ind_tex;
+	int	ind;
 
 	ind_tab = x * 4 + y * env->fen.size_line;
 //	printf("Valeur texX = [%lf] / texY = [%lf]\n", env->text[env->side].tex.x, env->text[env->side].tex.y);
 	ind_tex = (int)env->text[env->side].tex.x * 4 + (int)env->text[env->side].tex.y * env->img[env->side].size_line;
 //	printf("Valeur ind_tex : [%d]\n", ind_tex);
-	env->fen.img_str[ind_tab] = env->img[env->side].img_str[ind_tex];
-	env->fen.img_str[ind_tab + 1] = env->img[env->side].img_str[ind_tex + 1];
-	env->fen.img_str[ind_tab + 2] = env->img[env->side].img_str[ind_tex + 2];
+	ind = env->side;
+	if (ind == 1 && env->step.y < 0)
+		ind = 2;
+	if (ind == 0 && env->step.x > 0)
+		ind = 3;
+	env->fen.img_str[ind_tab] = env->img[ind].img_str[ind_tex];
+	env->fen.img_str[ind_tab + 1] = env->img[ind].img_str[ind_tex + 1];
+	env->fen.img_str[ind_tab + 2] = env->img[ind].img_str[ind_tex + 2];
 }
 
 void	color(t_wolf *env, int x, int y, int color)
