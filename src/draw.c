@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 13:58:11 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 14:03:57 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,7 @@
 void	ft_init_texture(t_wolf *env)
 {
 	print_wolf(env);
-/*	if (env->side == 1)
-		env->text.wallx = env->raypos.x + (((double)env->map.y - env->raypos.y + (1.0 - env->step.y) / 2.0) / (env->dir.y + 0.0001)) * env->dir.x;
-	else
-		env->text.wallx = env->raypos.y + (((double)env->map.x - env->raypos.x + (1.0 - env->step.x) / 2.0) / (env->dir.x + 0.0001)) * env->dir.y;
-	printf("Valeur wallX = [%lf] et texX = [%lf] et floor(wallx) = [%lf]\n", env->text.wallx, env->text.tex.x, floor(env->text.wallx));
-	env->text.wallx -= floor(env->text.wallx);
-
-	env->text.tex.x = (int)(env->text.wallx * env->img.width);
-	printf("Valeur wallX = [%lf] et texX = [%lf]\n", env->text.wallx, env->text.tex.x);
-	if ((env->side == 0 && env->dir.x > 0) || (env->side == 1 && env->dir.y < 0))
-		env->text.tex.x = env->img.width - env->text.tex.x - 1;
-	printf("Valeur wallX = [%lf] et texX = [%lf]\n", env->text.wallx, env->text.tex.x);
-*/	printf("Valeur env->text.x = [%d]\n", env->text.x);
+//	printf("Valeur env->text.x = [%d]\n", env->text.x);
 	if (env->side == 0)
 		env->text.wallx = env->pos.y + env->walldist * env->dir.y;
 	else
@@ -47,7 +35,10 @@ void	color_texture(t_wolf *env, int x, int y)
 
 	ind_tab = x * 4 + y * env->fen.size_line;
 //	printf("Valeur texX = [%lf] / texY = [%lf]\n", env->text.tex.x, env->text.tex.y);
-	ind_tex = (int)env->text.tex.x * 4 + (int)env->text.tex.y * env->img.size_line;
+	if (env->side == 1)
+		ind_tex = (int)env->text.tex.y * 4 + (int)env->text.tex.x * env->img.size_line;
+	else
+		ind_tex = (int)env->text.tex.x * 4 + (int)env->text.tex.y * env->img.size_line;
 //	printf("Valeur ind_tex : [%d]\n", ind_tex);
 	env->fen.img_str[ind_tab] = env->img.img_str[ind_tex];
 	env->fen.img_str[ind_tab + 1] = env->img.img_str[ind_tex + 1];
