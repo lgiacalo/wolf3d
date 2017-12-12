@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/11 17:53:05 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 10:41:05 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ typedef struct			s_image
 	char				*img_str;
 }						t_image;
 
+typedef struct			s_text
+{
+	double				wallx;
+	t_dcoord			tex;
+}						t_text;
+
 typedef struct			s_wolf
 {
 	t_mlx				fen;
@@ -93,9 +99,11 @@ typedef struct			s_wolf
 	int					hit;		// mur = 1, vide = 0
 	int					side;		// orientation du mur
 	double				walldist;	// Distance corrigee du rayon
+	double				hautligne;
 	t_coord				draw;
 	t_dep				dep;
 	t_image				img;
+	t_text				text;
 }						t_wolf;
 
 /*

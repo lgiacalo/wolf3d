@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/11 18:07:06 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/12 10:10:15 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ void	ft_init_mlx(t_wolf *env)
 	if (!(env->fen.img_str = mlx_get_data_addr(env->fen.img_ptr,
 		&(env->fen.bits_per_pixel), &(env->fen.size_line), &(env->fen.endian))))
 		ft_error("Probleme recuperation chaine image mlx", 0);
+	printf("============ IMAGE : MAP ===========\n");
+	printf("Bits per pixel : [%d]\n", env->fen.bits_per_pixel);
+	printf("Size line : [%d]\n", env->fen.size_line);
+	printf("Endian : [%d]\n\n", env->fen.endian);
 }
 
 void	ft_init_var(t_wolf *env)
@@ -44,10 +48,11 @@ void	ft_init_image(t_wolf *env)
 		ft_error("Probleme de chargement d'image !", 0);
 	if (!(env->img.img_str = mlx_get_data_addr(env->img.image, &(env->img.bits_per_pixel), &(env->img.size_line), &(env->img.endian))))
 		ft_error("Probleme image", 0);
+	printf("============= TEXTURE =============\n");
 	printf("Taille image : width = [%d] / height = [%d]\n", env->img.width, env->img.height);
 	printf("Bits per pixel : [%d]\n", env->img.bits_per_pixel);
 	printf("Size line : [%d]\n", env->img.size_line);
-	printf("Endian : [%d]\n", env->img.endian);
+	printf("Endian : [%d]\n\n", env->img.endian);
 }
 
 void	ft_init_wolf(t_wolf *env)
@@ -58,6 +63,7 @@ void	ft_init_wolf(t_wolf *env)
 		|| env->pos.x < 1 || env->pos.y < 1)
 	{
 		printf("Tu m'envoie de la merde !!!\n");
+		printf("Je ne peux pas etre positionne en dehors de la map !!!\n");
 		exit(0);
 	}
 	if (env->tab[(int)env->pos.x][(int)env->pos.y] != 0)
