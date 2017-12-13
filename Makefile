@@ -42,7 +42,7 @@ SRC_NAME	=	main.c ft_file.c ft_check_file.c\
 				boucle.c hook.c\
 				mouvement.c draw.c
 
-INC_NAME	=	wolf3d.h
+INC_NAME	=	wolf3d.h clavier.h
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 
@@ -77,7 +77,7 @@ export OPT
 
 ################################################################################
 
-all: .lib $(NAME)
+all: lib $(NAME)
 
 ifeq ($(DEBUG), yes)
 	$(SPY)echo "================ DEBUG avec $(OPT) ! ================"
@@ -92,12 +92,15 @@ $(OBJ_PATH):
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c $(INC) $(LIB)
 	$(SPY)$(CC) $(OPT) $(CFLAGS) $(CPPFLAGS) -c $< -o $@ 
 
-$(NAME):  $(OBJ_PATH) $(OBJ) $(LIB) 
+$(NAME): $(LIB) $(OBJ_PATH) $(OBJ) 
 	$(SPY)make -C minilibx_macos/
 	$(SPY)$(CC) $(OPT) -o $(NAME) $(OBJ) $(LIB) $(MINI) $(FRAME)
 	$(SPY)echo "$(COLOR)$(NAME)\t\t[OK]$(FINCOLOR)"
 
-.lib :
+$(LIB):
+	$(SPY)make -C libft/
+
+lib :
 	$(SPY)make -C libft/
 
 clean:
