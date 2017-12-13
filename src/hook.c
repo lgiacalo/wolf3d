@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 09:38:32 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 11:56:21 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:15:08 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	my_press_funct(int keycode, t_wolf *env)
 int	my_release_funct(int keycode, t_wolf *env)
 {
 	if (keycode == KEY_ESC)
-		exit(0); //TODO: free + destruction image : faire fonction
+		ft_end(&env);
 	if (keycode == KEY_W)
 		env->dep.m_up = 0;
 	if (keycode == KEY_S)

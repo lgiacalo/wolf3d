@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:17:36 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 14:50:41 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:12:19 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,20 +78,6 @@ char	**ft_reading_file(int fd)
 	map = ft_create_map(alst);
 	ft_lstfree(&alst);
 	return (map);
-}
-
-void	ft_verif_map(t_wolf *env, int **map)
-{
-	int	i;
-
-	i = -1;
-	while (map && ++i < env->len_tab.y)
-		if (map[0][i] != 1 || map[env->len_tab.x - 1][i] != 1)
-			ft_error("Map non conforme !", 0);
-	i = -1;
-	while (map && ++i < env->len_tab.x)
-		if (map[i][0] != 1 || map[i][env->len_tab.y - 1] != 1)
-			ft_error("Map non conforme !", 0);
 }
 
 int		**ft_file(int argc, char **argv)

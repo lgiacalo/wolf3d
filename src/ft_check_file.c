@@ -6,13 +6,27 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 18:04:41 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 14:50:43 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:10:02 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
 
-int	ft_isarray_rect(char **mapc)
+void	ft_verif_map(t_wolf *env, int **map)
+{
+	int	i;
+
+	i = -1;
+	while (map && ++i < env->len_tab.y)
+		if (map[0][i] != 1 || map[env->len_tab.x - 1][i] != 1)
+			ft_error("Map non conforme !", 0);
+	i = -1;
+	while (map && ++i < env->len_tab.x)
+		if (map[i][0] != 1 || map[i][env->len_tab.y - 1] != 1)
+			ft_error("Map non conforme !", 0);
+}
+
+int		ft_isarray_rect(char **mapc)
 {
 	int	i;
 	int	save;
@@ -31,7 +45,7 @@ int	ft_isarray_rect(char **mapc)
 	return (0);
 }
 
-int	*ft_trans(char *str)
+int		*ft_trans(char *str)
 {
 	int	*ret;
 	int	len;
@@ -51,7 +65,7 @@ int	*ft_trans(char *str)
 	return (ret);
 }
 
-int	ft_isgoodformat(char *str)
+int		ft_isgoodformat(char *str)
 {
 	int	i;
 
@@ -68,7 +82,7 @@ int	ft_isgoodformat(char *str)
 	return (0);
 }
 
-int	**ft_check_file(char **mapc)
+int		**ft_check_file(char **mapc)
 {
 	int	**map;
 	int	len;

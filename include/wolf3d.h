@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 13:17:50 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:14:29 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void					ft_init_wolf(t_wolf *env);
 
 int						**ft_file(int argc, char **argv);
 int						**ft_check_file(char **mapc);
+void					ft_verif_map(t_wolf *env, int **map);
 
 int						my_press_funct(int keycode, t_wolf *env);
 int						my_release_funct(int keycode, t_wolf *env);
@@ -124,6 +125,7 @@ void					mouvement(t_wolf *env);
 void					boucle(t_wolf *env);
 void					draw(t_wolf *env, int x);
 
+void					ft_end(t_wolf **env);
 void					ft_error(char *str, int us);
 int						ft_abs(int n);
 void					ft_arrayintdel(int ***tab);

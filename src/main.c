@@ -6,11 +6,33 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 20:41:49 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 14:50:42 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 15:14:26 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
+
+void	ft_free_map(int ***s, int size)
+{
+	int	i;
+
+	i = -1;
+	while (*s && ++i < size)
+	{
+		free(((*s)[i]));
+		(*s)[i] = NULL;
+	}
+	free(*s);
+	*s = NULL;
+}
+
+void	ft_end(t_wolf **env)
+{
+	ft_free_map(&((*env)->tab), (*env)->len_tab.x);
+	free(*env);
+	//TODO: detruire image et texture et fenetre
+	exit(0);
+}
 
 void	boucle_mlx(t_wolf *env)
 {
@@ -33,5 +55,3 @@ int		main(int argc, char **argv)
 	boucle_mlx(env);
 	return (0);
 }
-
-// TODO: free env.tab !!
