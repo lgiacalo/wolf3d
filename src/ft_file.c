@@ -6,21 +6,11 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:17:36 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/08 10:23:09 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:49:59 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void	ft_lstprint(t_list *lst)
-{
-	while (lst)
-	{
-		ft_putendl((char *)lst->content);
-		lst = lst->next;
-	}
-	//TODO: supprimer cette fonction
-}
 
 void	ft_lstfree(t_list **alst)
 {
@@ -71,7 +61,6 @@ char	**ft_reading_file(int fd)
 	char	**map;
 	t_list	*alst;
 
-	ft_printf("Debut lecture fichier !!\n");
 	alst = NULL;
 	ft_display_liste(&alst, fd);
 	map = ft_create_map(alst);

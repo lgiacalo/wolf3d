@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 09:22:53 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:51:51 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,17 @@ void	ft_init_mlx(t_wolf *env)
 	if (!(env->fen.img_str = mlx_get_data_addr(env->fen.img_ptr,
 		&(env->fen.bits_per_pixel), &(env->fen.size_line), &(env->fen.endian))))
 		ft_error("Probleme recuperation chaine image mlx", 0);
-	printf("============ IMAGE : MAP ===========\n");
-	printf("Bits per pixel : [%d]\n", env->fen.bits_per_pixel);
-	printf("Size line : [%d]\n", env->fen.size_line);
-	printf("Endian : [%d]\n\n", env->fen.endian);
 }
+
+/*
+**	pos.x = hauteur
+**	pos.y = width
+*/
 
 void	ft_init_var(t_wolf *env)
 {
-	env->pos.x = 20; // hauteur
-	env->pos.y = 22; // largeur
+	env->pos.x = 20;
+	env->pos.y = 22;
 	env->dir.x = -1;
 	env->dir.y = 0;
 	env->norm.x = 0;
@@ -44,15 +45,13 @@ void	ft_init_var(t_wolf *env)
 
 void	ft_init_image(t_wolf *env, int ind, char *fic)
 {
-	if (!(env->img[ind].image = mlx_xpm_file_to_image(env->fen.mlx_ptr, fic, &(env->img[ind].width), &(env->img[ind].height))))
+	if (!(env->img[ind].image = mlx_xpm_file_to_image(env->fen.mlx_ptr, fic,
+					&(env->img[ind].width), &(env->img[ind].height))))
 		ft_error("Probleme de chargement d'image !", 0);
-	if (!(env->img[ind].img_str = mlx_get_data_addr(env->img[ind].image, &(env->img[ind].bits_per_pixel), &(env->img[ind].size_line), &(env->img[ind].endian))))
+	if (!(env->img[ind].img_str = mlx_get_data_addr(env->img[ind].image,
+				&(env->img[ind].bits_per_pixel), &(env->img[ind].size_line),
+				&(env->img[ind].endian))))
 		ft_error("Probleme image", 0);
-	printf("============= TEXTURE %s N*%d =============\n", fic, ind);
-	printf("Taille image : width = [%d] / height = [%d]\n", env->img[ind].width, env->img[ind].height);
-	printf("Bits per pixel : [%d]\n", env->img[ind].bits_per_pixel);
-	printf("Size line : [%d]\n", env->img[ind].size_line);
-	printf("Endian : [%d]\n\n", env->img[ind].endian);
 }
 
 void	ft_init_wolf(t_wolf *env)
@@ -61,16 +60,9 @@ void	ft_init_wolf(t_wolf *env)
 	ft_init_var(env);
 	if (env->pos.x >= env->len_tab.x || env->pos.y >= env->len_tab.y
 		|| env->pos.x < 1 || env->pos.y < 1)
-	{
-		printf("Tu m'envoie de la merde !!!\n");
-		printf("Je ne peux pas etre positionne en dehors de la map !!!\n");
-		exit(0);
-	}
+		ft_error("Position en dehors de la map", 0);
 	if (env->tab[(int)env->pos.x][(int)env->pos.y] != 0)
-	{
-		printf("Tu m'as foutu sur un mur !! debile \n");
-		exit(0);
-	}
+		ft_error("Position sur un mur !", 0);
 	ft_init_image(env, 0, "img/rooftiles2.xpm");
 	ft_init_image(env, 1, "img/plafond.xpm");
 	ft_init_image(env, 2, "img/sol.xpm");
@@ -79,8 +71,9 @@ void	ft_init_wolf(t_wolf *env)
 
 t_wolf	*ft_wolf(void)
 {
-	static t_wolf	env;
+	static t_wolf	*env = NULL;
 
-	return (&env);
+	if (!env)
+		env = (t_wolf *)ft_memalloc(sizeof(t_wolf));
+	return (env);
 }
-

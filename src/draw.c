@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 09:31:12 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 12:43:16 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ void	color_texture(t_wolf *env, int x, int y)
 	env->fen.img_str[ind_tab + 2] = env->img[ind].img_str[ind_tex + 2];
 }
 
-void	color(t_wolf *env, int x, int y, int color)
+void	color(t_wolf *env, int x, int y, int opt)
 {
 	int ind;
 
 	ind = x * 4 + y * env->fen.size_line;
-	env->fen.img_str[ind] = color;
-	env->fen.img_str[ind + 1] = color;
-	env->fen.img_str[ind + 2] = color;
+	env->fen.img_str[ind] = (!opt) ? 120 : 77;
+	env->fen.img_str[ind + 1] = (!opt) ? 97 : 86;
+	env->fen.img_str[ind + 2] = (!opt) ? 33 : 86;
 }
 
 void	draw_wall(t_wolf *env, int x)
@@ -67,40 +67,22 @@ void	draw_wall(t_wolf *env, int x)
 	{
 		env->text[env->side].tex.y = (y * 2.0 - (H - 1.0) + env->hautligne)
 			* (env->img[env->side].height / 2.0) / env->hautligne;
-		color_texture(env, x, y);	
+		color_texture(env, x, y);
 	}
-}
-
-void	draw_sky(t_wolf *env, int x)
-{
-	int	y;
-
-	y = env->draw.y - 1;
-	while (++y < H && y >= 0)
-		color(env, x, y, (int)(0x000044));	
-}
-
-void	draw_ground(t_wolf *env, int x)
-{
-	int	y;
-
 	y = -1;
 	while (++y < env->draw.x && y < H)
-		color(env, x, y, (int)(0x554477));	
+		color(env, x, y, 0);
+	y = env->draw.y - 1;
+	while (++y < H && y >= 0)
+		color(env, x, y, (int)(0x000044));
 }
-
-
 
 void	draw(t_wolf *env, int x)
 {
-	env->hautligne = abs((int)((double)H / env->walldist)); //TODO: abs a changer
-	env->draw.x = (int)((H / 2.0) - (env->hautligne / 2.0)); //start
-	env->draw.y = (int)((H / 2.0) + (env->hautligne / 2.0)); //end
+	env->hautligne = ft_abs((int)((double)H / env->walldist));
+	env->draw.x = (int)((H / 2.0) - (env->hautligne / 2.0));
+	env->draw.y = (int)((H / 2.0) + (env->hautligne / 2.0));
 	(env->draw.x < 0) ? env->draw.x = 0 : 0;
 	(env->draw.y >= H) ? env->draw.y = (H - 1) : 0;
 	draw_wall(env, x);
-	if (env->draw.y < 0)//
-		env->draw.y = H;//
-	draw_ground(env, x);
-	draw_sky(env, x);
 }

@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:28:12 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 21:15:35 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 12:38:34 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,7 @@ void	ft_arrayintdel(int ***tab)
 	*tab = NULL;
 }
 
-void	print_wolf(t_wolf *env)// TODO: a supprimer
+int		ft_abs(int n)
 {
-	printf("\t\tStructure Wolf : \n");
-	printf("===================================================================\n");
-	printf("Len_tab\t\t[%d][%d]\n", env->len_tab.x, env->len_tab.y);
-	printf("Pos\t\t\t[%lf][%lf]\n", env->pos.x, env->pos.y);
-	printf("Dir\t\t\t[%lf][%lf]\n", env->dir.x, env->dir.y);
-	printf("Norm\t\t[%lf][%lf]\n", env->norm.x, env->norm.y);
-	printf("Camera\t\t[%lf]\n", env->cam);
-	printf("Raypos\t\t[%lf][%lf]\n", env->raypos.x, env->raypos.y);
-	printf("Raydir\t\t[%lf][%lf]\n", env->raydir.x, env->raydir.y);
-	printf("Map\t\t\t[%d][%d]\n", env->map.x, env->map.y);
-	printf("DeltaDist\t[%lf][%lf]\n", env->deltadist.x, env->deltadist.y);
-	printf("SideDist\t[%lf][%lf]\n", env->sidedist.x, env->sidedist.y);
-	printf("Step\t\t[%d][%d]\n", env->step.x, env->step.y);
-	printf("Side\t\t[%d]\n", env->side);
-	printf("WallDist\t\t[%lf]\n", env->walldist);
-	printf("===================================================================\n");
+	return ((n >= 0) ? n : (-n));
 }

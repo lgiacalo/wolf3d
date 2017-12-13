@@ -6,13 +6,11 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:58:32 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/11 14:56:44 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:45:18 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-// verifier que ca ne depasse pas le tab[][]
 
 void	avancer_reculer(t_wolf *env, int mov)
 {
@@ -28,7 +26,6 @@ void	avancer_reculer(t_wolf *env, int mov)
 		env->pos.y += tmp.y;
 	else
 		env->pos.x -= tmp.x;
-
 }
 
 void	tourner(t_wolf *env, int mov)
@@ -37,15 +34,12 @@ void	tourner(t_wolf *env, int mov)
 	double	vit;
 
 	vit = env->dep.vitrot * mov;
-
 	tmp = env->dir.x;
 	env->dir.x = tmp * cos(-vit) - env->dir.y * sin(-vit);
 	env->dir.y = tmp * sin(-vit) + env->dir.y * cos(-vit);
-
 	tmp = env->norm.x;
 	env->norm.x = tmp * cos(-vit) - env->norm.y * sin(-vit);
 	env->norm.y = tmp * sin(-vit) + env->norm.y * cos(-vit);
-
 }
 
 void	lateral(t_wolf *env, int mov)
@@ -66,7 +60,6 @@ void	lateral(t_wolf *env, int mov)
 
 void	mouvement(t_wolf *env)
 {
-	
 	(void)env;
 	if (env->dep.m_up)
 		avancer_reculer(env, 1);
@@ -80,5 +73,4 @@ void	mouvement(t_wolf *env)
 		lateral(env, 1);
 	if (env->dep.ml_left)
 		lateral(env, (-1));
-
 }

@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:54:30 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/12 13:18:44 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 12:43:53 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_init_rayon(t_wolf *env, int x)
 	env->map.x = (int)env->raypos.x;
 	env->map.y = (int)env->raypos.y;
 	env->deltadist.x = sqrt(1 +
-	(env->raydir.y * env->raydir.y)/(env->raydir.x * env->raydir.x));
+	(env->raydir.y * env->raydir.y) / (env->raydir.x * env->raydir.x));
 	env->deltadist.y = sqrt(1 +
-	(env->raydir.x * env->raydir.x)/(env->raydir.y * env->raydir.y));
+	(env->raydir.x * env->raydir.x) / (env->raydir.y * env->raydir.y));
 	env->sidedist.x = (env->raydir.x < 0)
 		? ((env->raypos.x - env->map.x) * env->deltadist.x)
 		: ((env->map.x + 1.0 - env->raypos.x) * env->deltadist.x);
@@ -38,7 +38,7 @@ void	ft_init_rayon(t_wolf *env, int x)
 void	boucle_wall(t_wolf *env)
 {
 	env->hit = 0;
-	while (env->hit == 0) //TODO: boucle infini si fichier pourri !!!
+	while (env->hit == 0)//TODO: boucle infini si fichier pourri !!!
 	{
 		if (env->sidedist.x < env->sidedist.y)
 		{
@@ -62,13 +62,12 @@ void	boucle_wall(t_wolf *env)
 
 void	def_wall(t_wolf *env)
 {
-	//TODO: abs a changer
 	if (env->side == 0)
 		env->walldist = (((double)env->map.x - env->raypos.x + 0.001
-				+ ((1.0 - env->step.x)/ 2.0)) / env->raydir.x);
+				+ ((1.0 - env->step.x) / 2.0)) / env->raydir.x);
 	else
 		env->walldist = (((double)env->map.y - env->raypos.y + 0.001
-				+ ((1.0 - env->step.y)/ 2.0)) / env->raydir.y);
+				+ ((1.0 - env->step.y) / 2.0)) / env->raydir.y);
 }
 
 void	boucle(t_wolf *env)
@@ -83,5 +82,6 @@ void	boucle(t_wolf *env)
 		def_wall(env);
 		draw(env, x);
 	}
-	mlx_put_image_to_window(env->fen.mlx_ptr, env->fen.win_ptr, env->fen.img_ptr, 0, 0);
+	mlx_put_image_to_window(env->fen.mlx_ptr, env->fen.win_ptr,
+			env->fen.img_ptr, 0, 0);
 }

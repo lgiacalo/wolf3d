@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 09:25:38 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 12:39:32 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <fcntl.h>
 # include <math.h>
 # include <time.h>
-# include <pthread.h> ///
-# include <stdio.h> //TODO: a retirer
 
 # define W				800
 # define H				600
@@ -85,20 +83,20 @@ typedef struct			s_wolf
 {
 	t_mlx				fen;
 	int					**tab;
-	t_coord				len_tab;	// Taille map fichier externe
-	t_dcoord			pos;		// Position de la camera
-	t_dcoord			dir;		// Vecteur de direction de la camera
-	t_dcoord			norm;		// Vecteur du plan de projection (perpendiculaire)
-	double				cam;		// Position de la colonne par rapport au centre (compris entre -1 et 1)
-	t_dcoord			raypos;		// Position de depart du rayon
-	t_dcoord			raydir;		// Direction de rayon sur chaque axe
-	t_coord				map;		// Cases de la cam
-	t_dcoord			deltadist;	// Longeur du rayon entre chaques intersection
-	t_dcoord			sidedist;	// Longeur de rayon
-	t_coord				step;		// Pas du rayon ou -1 ou +1 (en fonction de la pente de la droite)
-	int					hit;		// mur = 1, vide = 0
-	int					side;		// orientation du mur
-	double				walldist;	// Distance corrigee du rayon
+	t_coord				len_tab;
+	t_dcoord			pos;
+	t_dcoord			dir;
+	t_dcoord			norm;
+	double				cam;
+	t_dcoord			raypos;
+	t_dcoord			raydir;
+	t_coord				map;
+	t_dcoord			deltadist;
+	t_dcoord			sidedist;
+	t_coord				step;
+	int					hit;
+	int					side;
+	double				walldist;
 	double				hautligne;
 	t_coord				draw;
 	t_dep				dep;
@@ -128,9 +126,8 @@ void					draw(t_wolf *env, int x);
 
 void					ft_usage(void);
 void					ft_error(char *str, int us);
+int						ft_abs(int n);
 void					ft_arrayintdel(int ***tab);
 t_list					*ft_lstnew_light(void *content, size_t content_size);
-
-void					print_wolf(t_wolf *env);
 
 #endif

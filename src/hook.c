@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 09:38:32 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/11 13:30:11 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 11:56:21 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	my_press_funct(int keycode, t_wolf *env)
 int	my_release_funct(int keycode, t_wolf *env)
 {
 	if (keycode == KEY_ESC)
-		exit(0); // free + destruction image : faire fonction
+		exit(0); //TODO: free + destruction image : faire fonction
 	if (keycode == KEY_W)
 		env->dep.m_up = 0;
 	if (keycode == KEY_S)
@@ -57,6 +57,7 @@ int	my_mouse_funct(int button, int x, int y, t_wolf *env)
 	(void)y;
 	(void)env;
 	ft_fdprintf(1, "Fonction my mouse funct !!\n");
+	//TODO: faire fonction pour fermer le prog en haut a gauche
 	return (0);
 }
 
@@ -69,8 +70,9 @@ int	my_loop_funct(t_wolf *env)
 	dep = env->dep;
 	if (env->dep.time > tmp)
 		return (0);
-	env->dep.time = tmp + 10000; // a reduire, pour augmenter le rafraichis.. !!
-	if (dep.m_up || dep.m_down || dep.t_right || dep.t_left || dep.ml_right || dep.ml_left)
+	env->dep.time = tmp + 10000; //TODO: a reduire, pour up le rafraichis.. !!
+	if (dep.m_up || dep.m_down || dep.t_right || dep.t_left
+			|| dep.ml_right || dep.ml_left)
 	{
 		mouvement(env);
 		boucle(env);
