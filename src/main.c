@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 20:41:49 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 13:16:45 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 14:50:42 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int		main(int argc, char **argv)
 	t_wolf	*env;
 
 	env = ft_wolf();
-	env->pos.x = 20;
-	env->pos.y = 22;
 	if (!(env->tab = ft_file(argc, argv)))
 		ft_error("Fichier incorrect !!", 2);
 	ft_init_wolf(env);

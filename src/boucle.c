@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:54:30 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 13:07:59 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 14:51:06 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_init_rayon(t_wolf *env, int x)
 void	boucle_wall(t_wolf *env)
 {
 	env->hit = 0;
-	while (env->hit == 0)//TODO: boucle infini si fichier pourri !!!
+	while (env->hit == 0)
 	{
 		if (env->sidedist.x < env->sidedist.y)
 		{

@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:17:36 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 13:30:39 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 14:50:41 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ int		ft_verif_position(t_wolf *env, char *line)
 	len = ft_strlen(line);
 	if (len > 5 || len < 3)
 		return (0);
-	while (line[++i] != '\0')
+	while (line && line[++i] != '\0')
 		if (!ft_isdigit(line[i]) && line[i] != ' ')
 			return (0);
-
+	if (line[0] == ' ')
+		return (0);
 	env->pos.y = ft_atoi(line);
 	env->pos.x = ft_atoi(line + ((env->pos.y >= 10) ? 2 : 1));
 	return (1);
@@ -79,6 +80,20 @@ char	**ft_reading_file(int fd)
 	return (map);
 }
 
+void	ft_verif_map(t_wolf *env, int **map)
+{
+	int	i;
+
+	i = -1;
+	while (map && ++i < env->len_tab.y)
+		if (map[0][i] != 1 || map[env->len_tab.x - 1][i] != 1)
+			ft_error("Map non conforme !", 0);
+	i = -1;
+	while (map && ++i < env->len_tab.x)
+		if (map[i][0] != 1 || map[i][env->len_tab.y - 1] != 1)
+			ft_error("Map non conforme !", 0);
+}
+
 int		**ft_file(int argc, char **argv)
 {
 	char	**mapc;
@@ -91,6 +106,7 @@ int		**ft_file(int argc, char **argv)
 		ft_error("Probleme ouverture fichier", 0);
 	mapc = ft_reading_file(fd);
 	map = ft_check_file(mapc);
+	ft_verif_map(ft_wolf(), map);
 	if (close(fd) == -1)
 		ft_error("Probleme fermeture fichier", 0);
 	return (map);

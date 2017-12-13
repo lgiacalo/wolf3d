@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 13:24:16 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 14:34:17 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	ft_init_wolf(t_wolf *env)
 	ft_init_var(env);
 	if (env->pos.x >= env->len_tab.x || env->pos.y >= env->len_tab.y
 		|| env->pos.x < 1 || env->pos.y < 1)
-		ft_error("Position en dehors de la map", 0);
+		ft_error("Position incorrecte", 0);
 	if (env->tab[(int)env->pos.x][(int)env->pos.y] != 0)
 		ft_error("Position sur un mur !", 0);
 	ft_init_image(env, 0, "img/rooftiles2.xpm");
