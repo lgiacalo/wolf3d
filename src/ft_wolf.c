@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 00:30:21 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 01:39:37 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ void	ft_init_wolf(t_wolf *env)
 		printf("Tu m'as foutu sur un mur !! debile \n");
 		exit(0);
 	}
-	ft_init_image(env, 0, "img/mur.xpm");
-	ft_init_image(env, 1, "img/wood.xpm");
-	ft_init_image(env, 2, "img/grass.xpm");
-	ft_init_image(env, 3, "img/plafond.xpm");
+	ft_init_image(env, 0, "img/rooftiles2.xpm");
+	ft_init_image(env, 1, "img/plafond.xpm");
+	ft_init_image(env, 2, "img/sol.xpm");
+	ft_init_image(env, 3, "img/stone-wall.xpm");
 }
 
 t_wolf	*ft_wolf(void)
