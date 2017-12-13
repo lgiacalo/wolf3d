@@ -7,3 +7,4 @@
 - pourquoi ne pas choisir les touches que l'on souhaite utiliser ?
 - si position de depart dans un mur ?? je fais quoi ??
 - pas besoin de text[4] --  1 devrait suffire car meme taille pour toutes les textures
+- LEAKS !!!
