@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 23:01:09 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 11:51:51 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:24:16 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	ft_init_mlx(t_wolf *env)
 
 void	ft_init_var(t_wolf *env)
 {
-	env->pos.x = 20;
-	env->pos.y = 22;
 	env->dir.x = -1;
 	env->dir.y = 0;
 	env->norm.x = 0;

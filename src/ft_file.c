@@ -6,24 +6,11 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:17:36 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 11:49:59 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:30:39 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-void	ft_lstfree(t_list **alst)
-{
-	t_list	*tmp;
-
-	while (*alst)
-	{
-		tmp = *alst;
-		*alst = (*alst)->next;
-		free(tmp);
-		tmp = NULL;
-	}
-}
 
 char	**ft_create_map(t_list *lst)
 {
@@ -44,10 +31,34 @@ char	**ft_create_map(t_list *lst)
 	return (map);
 }
 
+int		ft_verif_position(t_wolf *env, char *line)
+{
+	int	i;
+	int	len;
+
+	i = -1;
+	len = ft_strlen(line);
+	if (len > 5 || len < 3)
+		return (0);
+	while (line[++i] != '\0')
+		if (!ft_isdigit(line[i]) && line[i] != ' ')
+			return (0);
+
+	env->pos.y = ft_atoi(line);
+	env->pos.x = ft_atoi(line + ((env->pos.y >= 10) ? 2 : 1));
+	return (1);
+}
+
 void	ft_display_liste(t_list **alst, int fd)
 {
 	char	*line;
 
+	if (get_next_line(fd, &line) <= 0)
+		ft_error("Ta map est nulle :(", 0);
+	if (!ft_verif_position(ft_wolf(), line))
+		ft_error("Mauvaise position", 0);
+	else
+		ft_strdel(&line);
 	while (get_next_line(fd, &line) > 0)
 	{
 		ft_lstadd_end(alst,\

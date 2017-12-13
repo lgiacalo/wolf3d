@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 12:39:32 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 13:17:50 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,10 @@ void					mouvement(t_wolf *env);
 void					boucle(t_wolf *env);
 void					draw(t_wolf *env, int x);
 
-void					ft_usage(void);
 void					ft_error(char *str, int us);
 int						ft_abs(int n);
 void					ft_arrayintdel(int ***tab);
 t_list					*ft_lstnew_light(void *content, size_t content_size);
+void					ft_lstfree(t_list **alst);
 
 #endif
