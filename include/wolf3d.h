@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 15:14:29 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 16:40:18 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # define W				800
 # define H				600
 
-# define KEY_PRESS		2
-# define KEY_PRESS_MASK	(1L << 0)
+# define KEY_PRESS			2
+# define KEY_PRESS_MASK		(1L << 0)
+# define KEY_RELEASE_MASK	(1L << 1)
+# define DESTROY_NOTIFY		17
 
 typedef struct			s_coord
 {
@@ -117,7 +119,6 @@ void					ft_verif_map(t_wolf *env, int **map);
 
 int						my_press_funct(int keycode, t_wolf *env);
 int						my_release_funct(int keycode, t_wolf *env);
-int						my_mouse_funct(int button, int x, int y, t_wolf *env);
 int						my_loop_funct(t_wolf *env);
 
 void					mouvement(t_wolf *env);

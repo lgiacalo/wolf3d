@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/06 11:17:36 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 15:12:19 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 17:00:55 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,10 @@ int		**ft_file(int argc, char **argv)
 	int		fd;
 
 	if (argc != 2)
-		ft_error("Nombre d'argument incorrect !!", 1);
+	{
+		ft_error("Nombre d'argument incorrect !!", 0);
+		ft_putendl_fd("Usage : ./wolf3d map", 1);
+	}
 	if ((fd = open(argv[1], O_RDONLY)) <= 0)
 		ft_error("Probleme ouverture fichier", 0);
 	mapc = ft_reading_file(fd);

@@ -6,13 +6,11 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 09:38:32 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 15:15:08 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 16:57:23 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "wolf3d.h"
-
-//TODO: donner la possibilite de choisir ces touches de mouvement
 
 int	my_press_funct(int keycode, t_wolf *env)
 {
@@ -50,17 +48,6 @@ int	my_release_funct(int keycode, t_wolf *env)
 	return (0);
 }
 
-int	my_mouse_funct(int button, int x, int y, t_wolf *env)
-{
-	(void)button;
-	(void)x;
-	(void)y;
-	(void)env;
-	ft_fdprintf(1, "Fonction my mouse funct !!\n");
-	//TODO: faire fonction pour fermer le prog en haut a gauche
-	return (0);
-}
-
 int	my_loop_funct(t_wolf *env)
 {
 	clock_t	tmp;
@@ -70,7 +57,7 @@ int	my_loop_funct(t_wolf *env)
 	dep = env->dep;
 	if (env->dep.time > tmp)
 		return (0);
-	env->dep.time = tmp + 10000; //TODO: a reduire, pour up le rafraichis.. !!
+	env->dep.time = tmp + 10000;
 	if (dep.m_up || dep.m_down || dep.t_right || dep.t_left
 			|| dep.ml_right || dep.ml_left)
 	{
