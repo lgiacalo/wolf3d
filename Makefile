@@ -40,7 +40,7 @@ OBJ_PATH	=	obj
 SRC_NAME	=	main.c ft_file.c ft_check_file.c\
 				ft_wolf.c fonctions.c\
 				boucle.c hook.c\
-				mouvement.c draw.c
+				mouvement.c draw.c floor_casting.c
 
 INC_NAME	=	wolf3d.h clavier.h
 

@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/07 21:57:56 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 12:43:16 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 22:26:29 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,6 @@ void	color_texture(t_wolf *env, int x, int y)
 	env->fen.img_str[ind_tab + 2] = env->img[ind].img_str[ind_tex + 2];
 }
 
-void	color(t_wolf *env, int x, int y, int opt)
-{
-	int ind;
-
-	ind = x * 4 + y * env->fen.size_line;
-	env->fen.img_str[ind] = (!opt) ? 120 : 77;
-	env->fen.img_str[ind + 1] = (!opt) ? 97 : 86;
-	env->fen.img_str[ind + 2] = (!opt) ? 33 : 86;
-}
-
 void	draw_wall(t_wolf *env, int x)
 {
 	int y;
@@ -69,12 +59,7 @@ void	draw_wall(t_wolf *env, int x)
 			* (env->img[env->side].height / 2.0) / env->hautligne;
 		color_texture(env, x, y);
 	}
-	y = -1;
-	while (++y < env->draw.x && y < H)
-		color(env, x, y, 0);
-	y = env->draw.y - 1;
-	while (++y < H && y >= 0)
-		color(env, x, y, (int)(0x000044));
+	draw_floor(env, x);
 }
 
 void	draw(t_wolf *env, int x)

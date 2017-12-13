@@ -6,16 +6,16 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/12 17:40:20 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 16:40:18 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/13 22:27:41 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WOLF3D_H
 # define WOLF3D_H
 
-# include "libft.h"
-# include "clavier.h"
+# include "../libft/include/libft.h"
 # include "../minilibx_macos/mlx.h"
+# include "clavier.h"
 # include <fcntl.h>
 # include <math.h>
 # include <time.h>
@@ -125,6 +125,7 @@ void					mouvement(t_wolf *env);
 
 void					boucle(t_wolf *env);
 void					draw(t_wolf *env, int x);
+void					draw_floor(t_wolf *env, int x);
 
 void					ft_end(t_wolf **env);
 void					ft_error(char *str, int us);
