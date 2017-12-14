@@ -6,7 +6,7 @@
 /*   By: lgiacalo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/13 21:25:44 by lgiacalo          #+#    #+#             */
-/*   Updated: 2017/12/13 22:26:28 by lgiacalo         ###   ########.fr       */
+/*   Updated: 2017/12/14 09:42:20 by lgiacalo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	color(t_wolf *env, int x, int y, int opt)
 void	draw_floor(t_wolf *env, int x)
 {
 	int	y;
+
 	y = -1;
 	while (++y < env->draw.x && y < H)
 		color(env, x, y, 0);
