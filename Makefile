@@ -57,7 +57,7 @@ INC	= $(addprefix $(INC_PATH)/,$(INC_NAME))
 LIB		= libft/libft.a
 MINI	=  minilibx_macos/libmlx.a
 
-FRAME	= -lmlx -framework OpenGL -framework AppKit -lpthread
+FRAME	= -framework OpenGL -framework AppKit -lpthread
 
 ################################################################################
 
