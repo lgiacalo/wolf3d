@@ -36,3 +36,7 @@ top left.
 1 0 0 0 1
 1 1 1 1 1
 ```
+
+
+![wolf3d screenshot](/map/wolf1.png?raw=true)
+![wolf3d screenshot](/map/wolf2.png?raw=true)
